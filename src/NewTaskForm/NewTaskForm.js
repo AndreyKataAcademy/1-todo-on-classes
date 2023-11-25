@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
 class NewTaskForm extends React.Component {
   state = {
-    name: "",
-    minutes: "",
-    seconds: "",
+    name: '',
+    minutes: '',
+    seconds: '',
   };
   render() {
     const { onAddTask } = this.props;
@@ -13,13 +13,13 @@ class NewTaskForm extends React.Component {
         className="new-todo-form"
         onKeyDown={event => {
           if (
-            event.key !== "Enter" ||
+            event.key !== 'Enter' ||
             this.state.name.length < 2 ||
-            (this.state.seconds === "" && this.state.minutes === "")
+            (this.state.seconds === '' && this.state.minutes === '')
           )
             return;
           onAddTask(this.state);
-          this.setState({ name: "", seconds: "", minutes: "" });
+          this.setState({ name: '', seconds: '', minutes: '' });
         }}
       >
         <input
@@ -34,8 +34,7 @@ class NewTaskForm extends React.Component {
           placeholder="Min"
           value={this.state.minutes}
           onChange={event => {
-            if (event.target.value >= 0)
-              this.setState({ minutes: event.target.value });
+            if (event.target.value >= 0) this.setState({ minutes: event.target.value });
           }}
           type="number"
         />
@@ -44,8 +43,7 @@ class NewTaskForm extends React.Component {
           placeholder="Sec"
           value={this.state.seconds}
           onChange={event => {
-            if (event.target.value >= 0)
-              this.setState({ seconds: event.target.value });
+            if (event.target.value >= 0) this.setState({ seconds: event.target.value });
           }}
           type="number"
         />

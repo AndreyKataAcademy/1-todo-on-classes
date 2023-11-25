@@ -1,5 +1,5 @@
-import { formatDistanceToNow } from "date-fns";
-import React from "react";
+import { formatDistanceToNow } from 'date-fns';
+import React from 'react';
 
 class Task extends React.Component {
   render() {
@@ -8,37 +8,22 @@ class Task extends React.Component {
     const onDoneTask = this.props.onDoneTask;
     const onDeleteTask = this.props.onDeleteTask;
     return (
-      <li
-        className={`${isDone ? "completed" : ""} ${isEdition ? "editing" : ""}`}
-      >
+      <li className={`${isDone ? 'completed' : ''} ${isEdition ? 'editing' : ''}`}>
         <div className="view">
-          <input
-            checked={isDone}
-            className="toggle"
-            type="checkbox"
-            onChange={() => onDoneTask(taskIndex)}
-          />
+          <input checked={isDone} className="toggle" type="checkbox" onChange={() => onDoneTask(taskIndex)} />
           <label>
             <span className="title">{name}</span>
             <span className="description">
-              <button
-                className="icon icon-play"
-                onClick={() => this.props.onControlTimer("play", taskIndex)}
-              ></button>
+              <button className="icon icon-play" onClick={() => this.props.onControlTimer('play', taskIndex)}></button>
               <button
                 className="icon icon-pause"
-                onClick={() => this.props.onControlTimer("pause", taskIndex)}
+                onClick={() => this.props.onControlTimer('pause', taskIndex)}
               ></button>
               {timeFormatter(Math.round(timer))}
             </span>
-            <span className="description">
-              {formatDistanceToNow(timeCreated)}
-            </span>
+            <span className="description">{formatDistanceToNow(timeCreated)}</span>
           </label>
-          <button
-            className="icon icon-edit"
-            onClick={() => this.props.onEditTask(taskIndex)}
-          ></button>
+          <button className="icon icon-edit" onClick={() => this.props.onEditTask(taskIndex)}></button>
           <button
             onClick={() => {
               onDeleteTask(taskIndex);
@@ -51,7 +36,7 @@ class Task extends React.Component {
             type="text"
             className="edit"
             onKeyDown={event => {
-              if (!(event.key === "Enter")) return;
+              if (!(event.key === 'Enter')) return;
               this.props.onChangeName(event, taskIndex);
               this.props.onCompleteEditTask(taskIndex);
             }}
@@ -68,16 +53,13 @@ function timeFormatter(timer) {
   if (timer >= 60) {
     const minutes = Math.floor(timer / 60);
     const seconds = timer % 60;
-    return `${minutes > 9 ? minutes : `0${minutes}`}:${
-      seconds > 9 ? seconds : `0${seconds}`
-    }`;
+    return `${minutes > 9 ? minutes : `0${minutes}`}:${seconds > 9 ? seconds : `0${seconds}`}`;
   }
   if (timer < 60 && timer > 0) {
     const seconds = timer % 60;
     return `00:${seconds > 9 ? seconds : `0${seconds}`}`;
   }
   if (timer <= 0) {
-    const seconds = timer % 60;
-    return "00:00";
+    return '00:00';
   }
 }
