@@ -20,7 +20,7 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "**/*": "prettier --write",
+    "**/*": "prettier --write .",
     "*.js": "eslint --fix"
   },
   "eslintConfig": {
